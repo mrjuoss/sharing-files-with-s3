@@ -12,6 +12,11 @@
 <div class="container vh-100 w-100">
     <div class="row justify-content-center h-100">
         <div class="col-8 order-2 order-md-1 col-md-3 offset-1 my-md-auto">
+            @if(session()->has('message'))
+                <div class="alert alert-success">
+                    {{ session()->get('message') }}
+                </div>
+            @endif
             <form id="formUpload" action="{{ route('upload') }}" method="post" enctype="multipart/form-data" autocomplete="off">
                 @csrf
                 <input type="file" name="file" id="selectFile" class="form-control">

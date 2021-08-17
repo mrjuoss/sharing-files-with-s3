@@ -1842,9 +1842,26 @@ module.exports = {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
-document.getElementById("selectFile").onchange = function () {
-  document.getElementById("formUpload").submit();
-};
+var btnCopy = document.getElementById("copyBtn");
+var selectedFile = document.getElementById("selectFile");
+
+if (selectedFile) {
+  selectedFile.onchange = function () {
+    document.getElementById("formUpload").submit();
+  };
+}
+
+if (btnCopy) {
+  btnCopy.onclick = function () {
+    //Select text kemudian lakukan copy
+    btnCopy.innerHTML = "Copied";
+    btnCopy.classList.remove("btn-outline-secondary");
+    btnCopy.classList.add("btn-outline-success");
+    var filePath = document.getElementById("copyUrl");
+    filePath.select();
+    document.execCommand("copy");
+  };
+}
 
 /***/ }),
 

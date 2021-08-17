@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\File;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
 class FileController extends Controller
@@ -29,6 +31,34 @@ class FileController extends Controller
 
     public function files(File $file)
     {
-        dd($file);
+        // dd($file);
+        $file->incrementView();
+
+        $file["path"] = env("AWS_ENDPOINT")."/".env("AWS_BUCKET");
+
+        return view('files')->with(['file' => $file]);
+    }
+
+    public function downloadFile(File $file)
+    {
+        $headers = ['Content-Disposition' => 'attachment; filename="'.$file->file_name.'"'];
+
+        if(!session()->exists("_$file->file_name"))
+        {
+            $file->incrementDownload();
+            Session::put("_$file->file_name", true);
+        }
+
+        return Response::make(Storage::disk('s3')->get($file->file_name), 200, $headers);
+    }
+
+    public function deleteFile(File $file)
+    {
+        // Remove File from Cloud Storage S3
+        Storage::disk('s3')->delete($file, $file->file_name);
+        // Delete record from database
+        $file->delete();
+
+        return redirect()->route("home")->with(["message" => "Berhasil menghapus data"]);
     }
 }
