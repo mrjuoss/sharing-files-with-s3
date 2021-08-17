@@ -26,7 +26,7 @@ class FileController extends Controller
         $file->downloads = 0;
         $file->save();
 
-        return redirect()->route('files', [$file->id]);
+        return redirect()->route('file.sharing.files', [$file->id]);
     }
 
     public function files(File $file)
@@ -59,6 +59,6 @@ class FileController extends Controller
         // Delete record from database
         $file->delete();
 
-        return redirect()->route("home")->with(["message" => "Berhasil menghapus data"]);
+        return redirect()->route("file.sharing.home")->with(["message" => "Berhasil menghapus data"]);
     }
 }

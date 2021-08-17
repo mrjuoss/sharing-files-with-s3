@@ -17,7 +17,7 @@
                     {{ session()->get('message') }}
                 </div>
             @endif
-            <form id="formUpload" action="{{ route('upload') }}" method="post" enctype="multipart/form-data" autocomplete="off">
+            <form id="formUpload" action="{{ route('file.sharing.upload') }}" method="post" enctype="multipart/form-data" autocomplete="off">
                 @csrf
                 <input type="file" name="file" id="selectFile" class="form-control">
             </form>

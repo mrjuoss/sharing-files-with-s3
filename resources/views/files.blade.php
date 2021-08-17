@@ -18,15 +18,15 @@
                 <p>Downloads : <strong>{{ $file->downloads }}</strong></p>
             </div>
             <div class="d-flex justify-content-between">
-                <a href="{{ route('file.download', [$file->id]) }}" class="btn btn-primary">Download</a>
-                <form method="POST" action="{{ route('file.delete', [$file->id]) }}">
+                <a href="{{ route('file.sharing.download', [$file->id]) }}" class="btn btn-primary">Download</a>
+                <form method="POST" action="{{ route('file.sharing.delete', [$file->id]) }}">
                     @csrf
                     @method("DELETE")
                     <button class="btn btn-outline-warning">Delete</button>
                 </form>
             </div>
             <div class="input-group input-group-sm mt-3">
-                <input type="text" class="form-control" id="copyUrl" value="{{ route('files', $file->id) }}" readonly />
+                <input type="text" class="form-control" id="copyUrl" value="{{ route('file.sharing.files', $file->id) }}" readonly />
                 <button class="btn btn-outline-secondary" type="button" id="copyBtn">Copy</button>
             </div>
             <img class="mt-4 img-thumbnail" src="{{ $file['path'] ."/". $file->file_name }}" alt="{{ $file->file_name}}" />
