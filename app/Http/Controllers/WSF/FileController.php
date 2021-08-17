@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\WSF;
 
 use App\Models\File;
 use Illuminate\Http\Request;

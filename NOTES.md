@@ -14,4 +14,16 @@
     ```
     composer require league/flysystem-aws-s3-v3 "~1.0"
     ```
+- Authentication Scaffolding with Bootstrap 5
+    ```
+    composer require laravel/ui
+    php artisan ui bootstrap
+    php artisan ui bootstrap --auth
+    npm install laravel-mix@latest --save-dev
+    npm install @webpixels/css
+    ```
 - 
+
+
+# References
+- https://webpixels.io/blog/build-modern-authentication-screens-with-laravel-8-and-bootstrap-5
