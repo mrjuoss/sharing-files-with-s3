@@ -6,10 +6,61 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">{{ __('Create Invoices') }}</div>
+                    <form action="{{ route('invoices.store') }}" method="post">
+                        @csrf
 
-                    <div class="card-body">
+                        <div class="card-body">
                         <div class="container">
                             <div class="row clearfix">
+                                <div class="col-md-4">
+                                    Invoice Number
+                                    <br />
+                                    <input type="text" name="invoice[invoice_number]" class="form-control mb-2" placeholder="AA001" required />
+                                    Invoice Date
+                                    <br />
+                                    <input type="date" name="invoice[invoice_date]" class="form-control" value="{{ date('Y-m-d') }}" required />
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            Name*: <input type="text" name='customer[name]' class="form-control" required />
+                                            Address*: <input type="text" name='customer[address]' class="form-control" required />
+                                            Postcode/ZIP: <input type="text" name='customer[postcode]' class="form-control" />
+                                            City*: <input type="text" name='customer[city]' class="form-control" required />
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            State: <input type="text" name='customer[state]' class="form-control" />
+                                            Country*: <input type="text" name='customer[country]' class="form-control" required />
+                                            Phone: <input type="text" name='customer[phone]' class="form-control" />
+                                            Email: <input type="email" name='customer[email]' class="form-control" />
+
+                                            <br />
+                                            <b>Additional fields</b> (optional):
+                                            <br />
+                                            <table class="table table-bordered table-hover">
+                                                <tbody>
+                                                <tr>
+                                                    <th class="text-center" width="50%">Field</th>
+                                                    <th class="text-center">Value</th>
+                                                </tr>
+                                                @for ($i = 0; $i <= 1; $i++)
+                                                    <tr>
+                                                        <td class="text-center">
+                                                            <input type="text" name='customer_fields[{{ $i }}][field_key]' class="form-control" />
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <input type="text" name='customer_fields[{{ $i }}][field_value]' class="form-control" />
+                                                        </td>
+                                                    </tr>
+                                                @endfor
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row clearfix mt-4">
                                 <div class="col-md-12">
                                     <table class="table table-bordered table-hover" id="tab_logic">
                                         <thead>
@@ -72,6 +123,7 @@
                             </div>
                         </div>
                     </div>
+                    </form>
                 </div>
             </div>
         </div>

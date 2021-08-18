@@ -27,3 +27,4 @@
 
 # References
 - https://webpixels.io/blog/build-modern-authentication-screens-with-laravel-8-and-bootstrap-5
+- https://bootsnipp.com/snippets/BE93p
