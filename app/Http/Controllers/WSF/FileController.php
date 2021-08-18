@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers\WSF;
 
-use App\Models\File;
+use App\Http\Controllers\Controller;
+use App\Models\WSF\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
@@ -12,12 +13,12 @@ class FileController extends Controller
 {
     public function upload(Request $request, File $file)
     {
-       $requestFile = $request->file('file');
-       $extensionFile = $requestFile->getClientOriginalExtension();
-       $fileName = time().'.'.$extensionFile;
+        $requestFile = $request->file('file');
+        $extensionFile = $requestFile->getClientOriginalExtension();
+        $fileName = time().'.'.$extensionFile;
 
-       // dd($fileName);
-       // Upload file to S3
+        // dd($fileName);
+        // Upload file to S3
         Storage::disk('s3')->put($fileName, fopen($requestFile, 'r+'), 'public');
 
         // Save fileName to database
@@ -36,7 +37,7 @@ class FileController extends Controller
 
         $file["path"] = env("AWS_ENDPOINT")."/".env("AWS_BUCKET");
 
-        return view('files')->with(['file' => $file]);
+        return view('wsf.files')->with(['file' => $file]);
     }
 
     public function downloadFile(File $file)

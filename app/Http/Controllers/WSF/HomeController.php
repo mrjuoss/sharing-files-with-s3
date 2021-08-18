@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\WSF;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        return view('homewsf');
+        return view('wsf.home');
     }
 }

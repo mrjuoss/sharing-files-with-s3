@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    <a href="{{ route('invoices.create') }}" class="btn btn-primary">Create Invoice</a>
                 </div>
             </div>
         </div>
