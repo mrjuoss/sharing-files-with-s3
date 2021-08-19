@@ -50,14 +50,14 @@
                                 </div>
                             </div>
                             <div>
-                                <button type="submit" class="btn btn-primary w-full">
+                                <button type="submit" class="btn text-white btn-primary w-full">
                                     {{ __('Sign in') }}
                                 </button>
                             </div>
                         </form>
                         <div class="my-4">
                             <small>{{ __('Don\'t have an account') }}</small>
-                            <a href="{{ route('register') }}" class="text-warning text-sm font-semibold">{{ __('Sign up') }}</a>
+                            <a href="{{ route('register') }}" class="text-decoration-none badge bg-primary text-white text-sm">{{ __('Sign up') }}</a>
                         </div>
                     </div>
                 </div>

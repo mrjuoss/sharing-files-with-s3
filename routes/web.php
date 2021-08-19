@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Invoices\InvoicesController;
+use App\Http\Controllers\Invoices\InvoiceController;
 use App\Http\Controllers\WSF\FileController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +26,6 @@ Route::middleware(['auth'])->prefix('invoices')->group(function()
 {
     // Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-    Route::get('/create', [InvoicesController::class, 'create'])->name('invoices.create');
-    Route::post('/store', [InvoicesController::class, 'store'])->name('invoices.store');
+    Route::get('/create', [InvoiceController::class, 'create'])->name('invoices.create');
+    Route::post('/store', [InvoiceController::class, 'store'])->name('invoices.store');
 });

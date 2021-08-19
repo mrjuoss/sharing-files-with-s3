@@ -8,9 +8,8 @@
                     <div class="card-header">{{ __('Create Invoices') }}</div>
                     <form action="{{ route('invoices.store') }}" method="post">
                         @csrf
-
                         <div class="card-body">
-                        <div class="container">
+                            <div class="container">
                             <div class="row clearfix">
                                 <div class="col-md-4">
                                     Invoice Number
@@ -23,17 +22,17 @@
                                 <div class="col-md-8">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            Name*: <input type="text" name='customer[name]' class="form-control" required />
-                                            Address*: <input type="text" name='customer[address]' class="form-control" required />
-                                            Postcode/ZIP: <input type="text" name='customer[postcode]' class="form-control" />
-                                            City*: <input type="text" name='customer[city]' class="form-control" required />
+                                            Name*: <input type="text" name="customer[name]" class="form-control" required />
+                                            Address*: <input type="text" name="customer[address]" class="form-control" required />
+                                            Postcode/ZIP: <input type="text" name="customer[post_code]" class="form-control" />
+                                            City*: <input type="text" name="customer[city]" class="form-control" required />
 
                                         </div>
                                         <div class="col-md-6">
-                                            State: <input type="text" name='customer[state]' class="form-control" />
-                                            Country*: <input type="text" name='customer[country]' class="form-control" required />
-                                            Phone: <input type="text" name='customer[phone]' class="form-control" />
-                                            Email: <input type="email" name='customer[email]' class="form-control" />
+                                            State: <input type="text" name="customer[state]" class="form-control" />
+                                            Country*: <input type="text" name="customer[country]" class="form-control" required />
+                                            Phone: <input type="text" name="customer[phone]" class="form-control" />
+                                            Email: <input type="email" name="customer[email]" class="form-control" />
 
                                             <br />
                                             <b>Additional fields</b> (optional):
@@ -87,8 +86,8 @@
                             </div>
                             <div class="row clearfix">
                                 <div class="col-md-12 mt-2">
-                                    <button id="add_row" class="btn btn-primary float-start">Add Row</button>
-                                    <button id='delete_row' class="float-end btn btn-info">Delete Row</button>
+                                    <button id="add_row" class="btn btn-primary text-white float-start">Add Row</button>
+                                    <button id='delete_row' class="float-end text-white btn btn-info">Delete Row</button>
                                 </div>
                             </div>
                             <div class="row clearfix" style="margin-top:20px">
@@ -105,7 +104,7 @@
                                             <th class="text-center">Tax</th>
                                             <td class="text-center"><div class="input-group mb-2 mb-sm-0">
                                                     <input type="number" class="form-control" id="tax" placeholder="0">
-                                                    <div class="input-group-addon">%</div>
+                                                    <div class="input-group-addon"> % </div>
                                                 </div></td>
                                         </tr>
                                         <tr>
@@ -121,8 +120,9 @@
                                 </div>
                                 </div>
                             </div>
+                                <input type="submit" value="Save Invoice" class="btn btn-primary text-white" />
                         </div>
-                    </div>
+                        </div>
                     </form>
                 </div>
             </div>
