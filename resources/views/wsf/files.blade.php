@@ -18,11 +18,11 @@
                 <p>Downloads : <strong>{{ $file->downloads }}</strong></p>
             </div>
             <div class="d-flex justify-content-between">
-                <a href="{{ route('file.sharing.download', [$file->id]) }}" class="btn btn-primary">Download</a>
+                <a href="{{ route('file.sharing.download', [$file->id]) }}" class="btn btn-primary" onclick="return confirm('Apakah anda yakin akan menghapus data ini ?')">Download</a>
                 <form method="POST" action="{{ route('file.sharing.delete', [$file->id]) }}">
                     @csrf
                     @method("DELETE")
-                    <button class="btn btn-outline-warning">Delete</button>
+                    <button class="btn btn-outline-warning" onclick="return confirm('Apakah anda yakin akan menghapus file ini ?')">Delete</button>
                 </form>
             </div>
             <div class="input-group input-group-sm mt-3">
