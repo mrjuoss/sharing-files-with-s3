@@ -4,7 +4,11 @@ namespace App\Http\Controllers\Invoices;
 
 use App\Http\Controllers\Controller;
 use App\Models\Invoices\Customer;
+use App\Models\Invoices\CustomerField;
+use App\Models\Invoices\Invoice;
+use App\Models\Invoices\InvoiceItem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class InvoiceController extends Controller
 {
@@ -36,7 +40,38 @@ class InvoiceController extends Controller
      */
     public function store(Request $request)
     {
-        Customer::create($request->customer);
+        DB::beginTransaction();
+
+        $customer = Customer::create($request->customer);
+
+        $invoice = Invoice::create($request->invoice + ['customer_id' => $customer->id]);
+
+        for ($i = 0; $i < count($request->product); $i++)
+        {
+            if (isset($request->qty[$i]) && isset($request->price[$i]))
+            {
+                InvoiceItem::create([
+                   'invoice_id' => $invoice->id,
+                    'name' => $request->product[$i],
+                    'quantity' => $request->qty[$i],
+                    'price' => $request->price[$i]
+                ]);
+            }
+        }
+
+        for ($i = 0; $i < count($request->customer_fields); $i++)
+        {
+            if (isset($request->customer_fields[$i]['field_key']) && isset($request->customer_fields[$i]['field_value']))
+            {
+                CustomerField::create([
+                    'customer_id' => $customer->id,
+                    'field_key' => $request->customer_fields[$i]['field_key'],
+                    'field_value' => $request->customer_fields[$i]['field_value']
+                ]);
+            }
+        }
+
+        DB::commit();
 
         return redirect()->route('invoices.create');
     }

@@ -40,16 +40,16 @@
                                             <table class="table table-bordered table-hover">
                                                 <tbody>
                                                 <tr>
-                                                    <th class="text-center" width="50%">Field</th>
+                                                    <th class="text-center">Field</th>
                                                     <th class="text-center">Value</th>
                                                 </tr>
                                                 @for ($i = 0; $i <= 1; $i++)
                                                     <tr>
                                                         <td class="text-center">
-                                                            <input type="text" name='customer_fields[{{ $i }}][field_key]' class="form-control" />
+                                                            <input type="text" name="customer_fields[{{ $i }}][field_key]" class="form-control" />
                                                         </td>
                                                         <td class="text-center">
-                                                            <input type="text" name='customer_fields[{{ $i }}][field_value]' class="form-control" />
+                                                            <input type="text" name="customer_fields[{{ $i }}][field_value]" class="form-control" />
                                                         </td>
                                                     </tr>
                                                 @endfor
@@ -74,10 +74,10 @@
                                         <tbody>
                                         <tr id='addr0'>
                                             <td>1</td>
-                                            <td><input type="text" name='product[]'  placeholder='Enter Product Name' class="form-control"/></td>
-                                            <td><input type="number" name='qty[]' placeholder='Enter Qty' class="form-control qty" step="0" min="0"/></td>
-                                            <td><input type="number" name='price[]' placeholder='Enter Unit Price' class="form-control price" step="0.00" min="0"/></td>
-                                            <td><input type="number" name='total[]' placeholder='0.00' class="form-control total" readonly/></td>
+                                            <td><input type="text" name="product[]"  placeholder='Enter Product Name' class="form-control"/></td>
+                                            <td><input type="number" name="qty[]" placeholder='Enter Qty' class="form-control qty" step="0" min="0"/></td>
+                                            <td><input type="number" name="price[]" placeholder='Enter Unit Price' class="form-control price" step="0.00" min="0"/></td>
+                                            <td><input type="number" name="total[]" placeholder='0.00' class="form-control total" readonly/></td>
                                         </tr>
                                         <tr id='addr1'></tr>
                                         </tbody>
@@ -103,8 +103,9 @@
                                         <tr>
                                             <th class="text-center">Tax</th>
                                             <td class="text-center"><div class="input-group mb-2 mb-sm-0">
-                                                    <input type="number" class="form-control" id="tax" placeholder="0">
-                                                    <div class="input-group-addon"> % </div>
+                                                    <input type="number" class="form-control" id="tax" placeholder="0" name="invoice[tax_percent]">
+                                                    <div class="input-group-addon">
+                                                        <span class="m-1"> % </span></div>
                                                 </div></td>
                                         </tr>
                                         <tr>
@@ -120,7 +121,7 @@
                                 </div>
                                 </div>
                             </div>
-                                <input type="submit" value="Save Invoice" class="btn btn-primary text-white" />
+                                <input type="submit" class="btn btn-primary text-white" value="Save Data" />
                         </div>
                         </div>
                     </form>
@@ -134,10 +135,15 @@
    <script>
        document.addEventListener("DOMContentLoaded", function(){
            var i=1;
-           $("#add_row").click(function(){b=i-1;
+
+           $("#add_row").click(function(e){
+               e.preventDefault();
+               b=i-1;
                $('#addr'+i).html($('#addr'+b).html()).find('td:first-child').html(i+1);
                $('#tab_logic').append('<tr id="addr'+(i+1)+'"></tr>');
                i++;
+
+               isDisabled(false);
            });
            $("#delete_row").click(function(){
                if(i>1){
@@ -153,6 +159,8 @@
            $('#tax').on('keyup change',function(){
                calc_total();
            });
+
+           return true;
        });
 
        function calc()

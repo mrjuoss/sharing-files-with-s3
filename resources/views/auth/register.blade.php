@@ -54,7 +54,7 @@
                         </form>
                         <div class="my-4">
                             <small>{{ __('Already have an account?') }}</small>
-                            <a href="{{ route('login') }}" class="text-warning text-sm font-semibold">{{ __('Sign in') }}</a>
+                            <a href="{{ route('login') }}" class="text-decoration-none badge text-primary text-sm font-bold">{{ __('Sign in') }}</a>
                         </div>
                     </div>
                 </div>
