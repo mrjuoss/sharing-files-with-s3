@@ -19,7 +19,9 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-        //
+        $invoices = Invoice::with('customer')->get();
+
+        return view('invoices.index')->with(['invoices' => $invoices]);
     }
 
     /**
@@ -73,7 +75,7 @@ class InvoiceController extends Controller
 
         DB::commit();
 
-        return redirect()->route('invoices.create');
+        return redirect()->route('invoices.index');
     }
 
     /**

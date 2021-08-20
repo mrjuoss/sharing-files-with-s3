@@ -24,8 +24,8 @@ Auth::routes();
 
 Route::middleware(['auth'])->prefix('invoices')->group(function()
 {
-    // Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/', [InvoiceController::class, 'index'])->name('invoices.index');
     Route::get('/create', [InvoiceController::class, 'create'])->name('invoices.create');
     Route::post('/store', [InvoiceController::class, 'store'])->name('invoices.store');
+    Route::get('/show/{id}', [InvoiceController::class, 'show'])->name('invoices.show');
 });
