@@ -3,10 +3,7 @@
 namespace App\Http\Controllers\Invoices;
 
 use App\Http\Controllers\Controller;
-use App\Models\Invoices\Customer;
-use App\Models\Invoices\CustomerField;
 use App\Models\Invoices\Invoice;
-use App\Models\Invoices\InvoiceItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -86,7 +83,10 @@ class InvoiceController extends Controller
      */
     public function show($id)
     {
-        //
+        $invoice = Invoice::findOrFail($id);
+        // $items = Invoice::with('customer')->where('id', $id)->get();
+        // dd($invoice);
+        return view('invoices.show', compact('invoice'));
     }
 
     /**

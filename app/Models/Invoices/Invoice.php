@@ -18,7 +18,7 @@ class Invoice extends Model
         return $this->hasMany(InvoiceItem::class);
     }
 
-    public function customer()
+    public function customer(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Customer::class);
     }
